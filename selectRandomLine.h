@@ -8,13 +8,15 @@ char* selectRandomLine(char* path){
     FILE* fileVariable = fopen(path, "r");
     char lineMemory[10];
     int random = rand()%21;
-    char* output = "AnyValueNotImportan";
+    if (random == 0) random = 1;
 
-    for (int line = 1 ; fscanf(  fileVariable, "%s", lineMemory ) != EOF  ; line++ ) {
+    for (int line = 0 ; fscanf(  fileVariable, "%s", lineMemory ) != EOF  ; line++ ) {
         if ( line ==  random) {
-            output = lineMemory;
+            char* output = lineMemory;
             return output;
         }
     }
+    fclose(fileVariable);
+    char* output = lineMemory;
     return output;
 }
